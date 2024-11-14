@@ -54,16 +54,16 @@ export function GenerateSoundForm({ handleGetAudio }: GenerateSoundFormProps) {
   // Function to handle form submission
   function onSubmit(data: z.infer<typeof FormSchema>) {
     setFormSubmitting(true);
-    
+
     // Prepare the sound request object
     const soundRequest: CreateSoundRequest = {
       modelUrl: data.soundModel,
       text: data.text,
     };
-    
+
     // Call the provided handler function with the sound request
     handleGetAudio(soundRequest);
-    
+
     setFormSubmitting(false);
   }
 
@@ -93,7 +93,10 @@ export function GenerateSoundForm({ handleGetAudio }: GenerateSoundFormProps) {
                   <SelectContent>
                     {/* Map through available sound models */}
                     {SOUND_MODELS.map((model: SoundModel, index: number) => (
-                      <SelectItem key={`${model.name}-${index}`} value={model.url}>
+                      <SelectItem
+                        key={`${model.name}-${index}`}
+                        value={model.url}
+                      >
                         {model.name}
                       </SelectItem>
                     ))}

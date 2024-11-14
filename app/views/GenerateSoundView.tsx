@@ -1,14 +1,10 @@
-'use client' 
+"use client";
 
 import { GenerateSoundForm } from "@/components/GenerateSoundForm";
 import Loader from "@/components/Loader";
 import { useState } from "react";
 
-/**
- * The main view component for generating sound using a pre-trained model.
- */
 export default function GenerateSoundView() {
-  // State to manage loading status and audio URL
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
 
@@ -50,21 +46,20 @@ export default function GenerateSoundView() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
-      <div className="w-full md:w-1/3 p-4">
+    <div className="flex flex-col h-screen ">
+      <div className="w-full md:w-2/3 mx-auto p-4">
         <div className="ml-8 mr-8 mt-4 mb-4 text-xl">
-          <h1>Text to Speech</h1>
+          <h1 className="text-center tracking-wider font-semibold text-2xl">
+            Text to Speech
+          </h1>
         </div>
-        {/* Render the form component for generating sound */}
         <GenerateSoundForm handleGetAudio={handleGetAudio} />
       </div>
-      <div className="w-full md:w-2/3 p-4 bg-gray-200 h-screen">
+      <div className="w-full md:w-2/3 mx-auto p-4 h-screen">
         <div className="h-full flex justify-center items-center">
           {isLoading ? (
-            // Show loader when fetching audio data
             <Loader />
           ) : (
-            // Display audio player when audio is available
             <>
               {audioUrl && (
                 <audio controls>
